@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}(C) 2021; Joerg Fischer <georgi.rybakov@gmx.net>
+<#if licenseLast??>
+${licenseLast}
+</#if>
