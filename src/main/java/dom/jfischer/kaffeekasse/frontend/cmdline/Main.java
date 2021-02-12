@@ -34,7 +34,7 @@ public final class Main {
      *
      * result of <code>kaffeekasse --version</code>.
      */
-    private static final String PROGRAM_VERSION = "${prog} 0.0.1";
+    private static final String PROGRAM_VERSION = "${prog} 0.2.0";
 
     /**
      * persistence unit required by java persistence api.
