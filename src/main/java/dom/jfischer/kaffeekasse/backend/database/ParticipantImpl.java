@@ -3,10 +3,10 @@
  */
 package dom.jfischer.kaffeekasse.backend.database;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.ar.Participant;
 import java.util.Date;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link dom.jfischer.kaffeekasse.backend.ar.Participant} for
@@ -36,7 +36,7 @@ public class ParticipantImpl implements
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * instance for storing system state.
@@ -52,7 +52,7 @@ public class ParticipantImpl implements
      * constructor.
      *
      * @param backendErrorState a
-     * {@link dom.jfischer.kaffeekasse.backend.BackendErrorState} object.
+     * {@link dom.jfischer.kaffeekasse.backend.BackendRetcodeState} object.
      * @param state a {@link dom.jfischer.kaffeekasse.backend.database.State}
      * object.
      * @param rawParticipant a
@@ -60,7 +60,7 @@ public class ParticipantImpl implements
      * object.
      */
     public ParticipantImpl(
-            final BackendErrorState backendErrorState,
+            final BackendRetcodeState backendErrorState,
             final State state,
             final dom.jfischer.kaffeekasse.backend.database.entities.Participant rawParticipant) {
         this.backendErrorState = backendErrorState;
@@ -126,10 +126,10 @@ public class ParticipantImpl implements
      * {@inheritDoc}
      *
      * implements
-     * {@link dom.jfischer.kaffeekasse.backend.ar.Participant#getBackendError}.
+     * {@link dom.jfischer.kaffeekasse.backend.ar.Participant#getBackendRetcode}.
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 

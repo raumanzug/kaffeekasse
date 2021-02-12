@@ -4,7 +4,7 @@
 package dom.jfischer.kaffeekasse.middleTier;
 
 import backend.fake.DAOImpl;
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.DAO;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
@@ -85,7 +85,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -103,14 +103,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -142,9 +142,8 @@ public class CommandImplTest {
 
         {
             assertTrue(this.slave.isErrorMode());
-            assertTrue(
-                    this.slave.getState()
-                    == BackendError.PARTICIPANT_ALREADY_EXISTS);
+            assertTrue(this.slave.getState()
+                    == BackendRetcode.PARTICIPANT_ALREADY_EXISTS);
         }
 
         this.slave.resetState();
@@ -153,7 +152,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -199,14 +198,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -235,7 +234,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -276,14 +275,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -312,7 +311,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -356,14 +355,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -392,7 +391,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -438,7 +437,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -459,14 +458,14 @@ public class CommandImplTest {
 
             {
                 assertFalse(this.slave.isErrorMode());
-                assertTrue(this.slave.getState() == BackendError.OK);
+                assertTrue(this.slave.getState() == BackendRetcode.OK);
             }
 
             this.frontend.listEntries();
 
             {
                 assertFalse(this.slave.isErrorMode());
-                assertTrue(this.slave.getState() == BackendError.OK);
+                assertTrue(this.slave.getState() == BackendRetcode.OK);
             }
 
             {
@@ -482,7 +481,7 @@ public class CommandImplTest {
 
         {
             assertTrue(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.ENTRY_NOT_FOUND);
+            assertTrue(this.slave.getState() == BackendRetcode.ENTRY_NOT_FOUND);
         }
 
         tearDown();
@@ -504,7 +503,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -535,7 +534,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -566,7 +565,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -595,7 +594,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -625,14 +624,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -662,7 +661,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -702,7 +701,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -737,7 +736,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -767,14 +766,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.listParticipants();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -803,7 +802,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -832,7 +831,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {
@@ -859,14 +858,14 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         this.frontend.getPrice();
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
         {
             JSONObject jsonObject = this.slave.getJSONObject();
@@ -881,7 +880,7 @@ public class CommandImplTest {
 
         {
             assertTrue(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.ZERO_PRICE);
+            assertTrue(this.slave.getState() == BackendRetcode.ZERO_PRICE);
         }
 
         this.slave.resetState();
@@ -890,7 +889,7 @@ public class CommandImplTest {
 
         {
             assertFalse(this.slave.isErrorMode());
-            assertTrue(this.slave.getState() == BackendError.OK);
+            assertTrue(this.slave.getState() == BackendRetcode.OK);
         }
 
         {

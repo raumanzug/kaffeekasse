@@ -3,8 +3,8 @@
  */
 package dom.jfischer.kaffeekasse.middleTier;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * notify frontend about results of command execution.
@@ -13,12 +13,12 @@ import dom.jfischer.kaffeekasse.backend.BackendErrorState;
  * @version $Id: $Id
  */
 public abstract class SlaveImpl
-        implements BackendErrorState, Slave {
+        implements BackendRetcodeState, Slave {
 
     /**
      * backend error code currently stored in this object.
      */
-    private BackendError state = BackendError.OK;
+    private BackendRetcode state = BackendRetcode.OK;
 
     /**
      * indicates that an error has occured.
@@ -31,7 +31,7 @@ public abstract class SlaveImpl
      * error appearing in the backend's site.
      */
     @Override
-    public BackendError getState() {
+    public BackendRetcode getState() {
         return this.state;
     }
 
@@ -60,7 +60,7 @@ public abstract class SlaveImpl
      */
     @Override
     public void resetState() {
-        this.state = BackendError.OK;
+        this.state = BackendRetcode.OK;
         this.errorMode = false;
     }
 
@@ -68,12 +68,12 @@ public abstract class SlaveImpl
      * {@inheritDoc}
      */
     @Override
-    public void setState(final BackendError error) {
+    public void setState(final BackendRetcode error) {
         this.state = error;
-        if (error != BackendError.OK) {
+        if (error != BackendRetcode.OK) {
             this.errorMode = true;
         }
-        processBackendError(error);
+        processBackendRetcode(error);
     }
 
 }

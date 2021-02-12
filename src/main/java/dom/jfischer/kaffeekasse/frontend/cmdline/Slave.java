@@ -3,7 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.frontend.cmdline;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.middleTier.JSONObject;
 
 /**
@@ -34,10 +34,10 @@ public class Slave extends dom.jfischer.kaffeekasse.middleTier.SlaveImpl {
      * {@inheritDoc}
      *
      * implements abstract method
-     * {@link dom.jfischer.kaffeekasse.middleTier.SlaveImpl#processBackendError}.
+     * {@link dom.jfischer.kaffeekasse.middleTier.SlaveImpl#processBackendRetcode}.
      */
     @Override
-    public void processBackendError(final BackendError error) {
+    public void processBackendRetcode(final BackendRetcode error) {
         this.output.stderr(error.getMessage());
     }
 

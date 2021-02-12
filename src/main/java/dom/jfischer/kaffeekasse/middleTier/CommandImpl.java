@@ -3,7 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.middleTier;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.DAO;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
@@ -91,8 +91,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             participant.coffeeIn(amount, timestamp);
             participant.save();
         }
@@ -111,8 +111,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             participant.coffeeOut(nr, timestamp);
             participant.save();
         }
@@ -130,11 +130,11 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         AccountPeriod currentAccountPeriod = this.dao.getCurrentAccountPeriod();
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             AccountEntry entry = currentAccountPeriod.searchId(id);
-            err = this.dao.getBackendError();
-            if (err == BackendError.OK) {
+            err = this.dao.getBackendRetcode();
+            if (err == BackendRetcode.OK) {
                 currentAccountPeriod.deleteEntry(entry);
             }
         }
@@ -153,8 +153,8 @@ public class CommandImpl implements Command {
 
         int retval = this.dao.getBankDeposit();
 
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             this.slave.processJSON(JSONizer.jsonize(retval));
         }
 
@@ -171,8 +171,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             this.slave.processJSON(JSONizer.jsonize(participant.getDeposit()));
         }
 
@@ -189,8 +189,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             int retval = participant.getNrCups();
             this.slave.processJSON(JSONizer.jsonize(retval));
         }
@@ -208,8 +208,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         AccountPeriod period = this.dao.getCurrentAccountPeriod();
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             int price = period.getPrice();
             this.slave.processJSON(JSONizer.jsonize(price));
         }
@@ -227,8 +227,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             participant.inactivate();
             participant.save();
         }
@@ -246,8 +246,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         AccountPeriod period = this.dao.getCurrentAccountPeriod();
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             this.slave.processJSON(
                     JSONizer.jsonizeAccountEntryList(period.listEntries()));
         }
@@ -296,8 +296,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         Participant participant = this.dao.getParticipant(name);
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             participant.pay(amount, timestamp);
             participant.save();
         }
@@ -315,8 +315,8 @@ public class CommandImpl implements Command {
         this.dao.open();
 
         AccountPeriod accountPeriod = this.dao.getCurrentAccountPeriod();
-        BackendError err = this.dao.getBackendError();
-        if (err == BackendError.OK) {
+        BackendRetcode err = this.dao.getBackendRetcode();
+        if (err == BackendRetcode.OK) {
             accountPeriod.setPrice(price);
             accountPeriod.save();
         }

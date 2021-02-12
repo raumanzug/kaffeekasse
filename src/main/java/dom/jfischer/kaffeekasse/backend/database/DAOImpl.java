@@ -3,8 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.backend.database;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.DAO;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriodComparator;
@@ -15,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link dom.jfischer.kaffeekasse.backend.DAO} or database backend.
@@ -32,7 +32,7 @@ public class DAOImpl implements DAO {
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * instance for storing system state.
@@ -44,11 +44,11 @@ public class DAOImpl implements DAO {
      *
      * @param entityManager a {@link javax.persistence.EntityManager} object.
      * @param backendErrorState a
-     * {@link dom.jfischer.kaffeekasse.backend.BackendErrorState} object.
+     * {@link dom.jfischer.kaffeekasse.backend.BackendRetcodeState} object.
      */
     public DAOImpl(
             final EntityManager entityManager,
-            final BackendErrorState backendErrorState) {
+            final BackendRetcodeState backendErrorState) {
         this.entityManager = entityManager;
         this.backendErrorState = backendErrorState;
         this.state
@@ -79,7 +79,7 @@ public class DAOImpl implements DAO {
         if (isParticipantDoesExist) {
 
             // ParticipantImpl with name <code>name</code> already exists. Set error code.
-            this.backendErrorState.setState(BackendError.PARTICIPANT_ALREADY_EXISTS);
+            this.backendErrorState.setState(BackendRetcode.PARTICIPANT_ALREADY_EXISTS);
         } else {
 
             // participant does not exist yet. add a participant with
@@ -122,10 +122,10 @@ public class DAOImpl implements DAO {
     /**
      * {@inheritDoc}
      *
-     * implements {@link dom.jfischer.kaffeekasse.backend.DAO#getBackendError}.
+     * implements {@link dom.jfischer.kaffeekasse.backend.DAO#getBackendRetcode}.
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 
@@ -177,7 +177,7 @@ public class DAOImpl implements DAO {
                     this.state,
                     rawParticipant);
         } catch (NoResultException e) {
-            this.backendErrorState.setState(BackendError.PARTICIPANT_NOT_FOUND);
+            this.backendErrorState.setState(BackendRetcode.PARTICIPANT_NOT_FOUND);
         }
 
         return retval;

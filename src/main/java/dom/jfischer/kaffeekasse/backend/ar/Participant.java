@@ -3,7 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.backend.ar;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import java.util.Date;
 
 /**
@@ -48,7 +48,7 @@ public interface Participant {
      *
      * @return backend;s error state.
      */
-    BackendError getBackendError();
+    BackendRetcode getBackendRetcode();
 
     /**
      * get an identifying token for this participant.

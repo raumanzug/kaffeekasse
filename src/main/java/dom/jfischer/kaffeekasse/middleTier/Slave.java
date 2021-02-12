@@ -3,7 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.middleTier;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 
 /**
  * notify frontend about results of command execution.
@@ -26,10 +26,10 @@ public interface Slave {
      *
      * what should happen if an error at the backend's site has appeared?
      *
-     * @param error a {@link dom.jfischer.kaffeekasse.backend.BackendError}
+     * @param error a {@link dom.jfischer.kaffeekasse.backend.BackendRetcode}
      * object.
      */
-    void processBackendError(BackendError error);
+    void processBackendRetcode(BackendRetcode error);
 
     /**
      * notifying about regular results of command execution.

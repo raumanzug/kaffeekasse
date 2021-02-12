@@ -3,12 +3,12 @@
  */
 package dom.jfischer.kaffeekasse.backend.database;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.Participant;
 import java.util.Date;
 import javax.persistence.EntityManager;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link dom.jfischer.kaffeekasse.backend.ar.AccountEntry} for
@@ -28,7 +28,7 @@ public class AccountEntryImpl implements
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * instance for storing system state.
@@ -45,7 +45,7 @@ public class AccountEntryImpl implements
      *
      * @param entityManager a {@link javax.persistence.EntityManager} object.
      * @param backendErrorState a
-     * {@link dom.jfischer.kaffeekasse.backend.BackendErrorState} object.
+     * {@link dom.jfischer.kaffeekasse.backend.BackendRetcodeState} object.
      * @param state a {@link dom.jfischer.kaffeekasse.backend.database.State}
      * object.
      * @param rawAccountEntry a
@@ -54,7 +54,7 @@ public class AccountEntryImpl implements
      */
     public AccountEntryImpl(
             final EntityManager entityManager,
-            final BackendErrorState backendErrorState,
+            final BackendRetcodeState backendErrorState,
             final State state,
             final dom.jfischer.kaffeekasse.backend.database.entities.AccountEntry rawAccountEntry) {
         this.entityManager = entityManager;
@@ -78,10 +78,10 @@ public class AccountEntryImpl implements
      * {@inheritDoc}
      *
      * implements
-     * {@link dom.jfischer.kaffeekasse.backend.ar.AccountEntry#getBackendError}.
+     * {@link dom.jfischer.kaffeekasse.backend.ar.AccountEntry#getBackendRetcode}.
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 

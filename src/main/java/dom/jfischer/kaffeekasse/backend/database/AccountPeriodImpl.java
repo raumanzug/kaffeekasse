@@ -3,8 +3,7 @@
  */
 package dom.jfischer.kaffeekasse.backend.database;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntryComparator;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
@@ -13,6 +12,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link dom.jfischer.kaffeekasse.backend.ar.AccountPeriod} for
@@ -32,7 +32,7 @@ public class AccountPeriodImpl implements
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * instance for storing system state.
@@ -49,7 +49,7 @@ public class AccountPeriodImpl implements
      *
      * @param entityManager a {@link javax.persistence.EntityManager} object.
      * @param backendErrorState a
-     * {@link dom.jfischer.kaffeekasse.backend.BackendErrorState} object.
+     * {@link dom.jfischer.kaffeekasse.backend.BackendRetcodeState} object.
      * @param state a {@link dom.jfischer.kaffeekasse.backend.database.State}
      * object.
      * @param rawAccountPeriod a
@@ -58,7 +58,7 @@ public class AccountPeriodImpl implements
      */
     public AccountPeriodImpl(
             final EntityManager entityManager,
-            final BackendErrorState backendErrorState,
+            final BackendRetcodeState backendErrorState,
             final State state,
             final dom.jfischer.kaffeekasse.backend.database.entities.AccountPeriod rawAccountPeriod) {
         this.entityManager = entityManager;
@@ -82,10 +82,10 @@ public class AccountPeriodImpl implements
      * {@inheritDoc}
      *
      * implements
-     * {@link dom.jfischer.kaffeekasse.backend.ar.AccountPeriod#getBackendError}.
+     * {@link dom.jfischer.kaffeekasse.backend.ar.AccountPeriod#getBackendRetcode}.
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 
@@ -198,12 +198,12 @@ public class AccountPeriodImpl implements
             if (retval == null) {
 
                 // if entry not found marks error state.
-                this.backendErrorState.setState(BackendError.ENTRY_NOT_FOUND);
+                this.backendErrorState.setState(BackendRetcode.ENTRY_NOT_FOUND);
             }
 
         } catch (NumberFormatException e) {
             this.backendErrorState
-                    .setState(BackendError.NO_VALID_ACCOUNT_ENTRY_KEY);
+                    .setState(BackendRetcode.NO_VALID_ACCOUNT_ENTRY_KEY);
         }
 
         return retval;
@@ -220,7 +220,7 @@ public class AccountPeriodImpl implements
         if (price == 0) {
 
             // price should never be zero. if so then mark as error.
-            this.backendErrorState.setState(BackendError.ZERO_PRICE);
+            this.backendErrorState.setState(BackendRetcode.ZERO_PRICE);
         } else {
             this.rawAccountPeriod.setPrice(price);
         }

@@ -3,12 +3,12 @@
  */
 package backend.fake;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
 import dom.jfischer.kaffeekasse.backend.ar.Participant;
 import java.util.Date;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link AccountEntry}.
@@ -20,7 +20,7 @@ public class AccountEntryImpl implements AccountEntry {
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * amount of ct added to deposit.
@@ -70,7 +70,7 @@ public class AccountEntryImpl implements AccountEntry {
      * @param accountPeriod
      */
     public AccountEntryImpl(
-            BackendErrorState backendErrorState,
+            BackendRetcodeState backendErrorState,
             int amount,
             int nrCups,
             Integer id,
@@ -99,12 +99,12 @@ public class AccountEntryImpl implements AccountEntry {
     }
 
     /**
-     * implements {@link AccountEntry#getBackendError}.
+     * implements {@link AccountEntry#getBackendRetcode}.
      *
      * @return
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 

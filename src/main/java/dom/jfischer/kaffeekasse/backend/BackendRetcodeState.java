@@ -10,21 +10,21 @@ package dom.jfischer.kaffeekasse.backend;
  * @author jfischer
  * @version $Id: $Id
  */
-public interface BackendErrorState {
+public interface BackendRetcodeState {
 
     /**
      * get backend error stored in this object.
      *
      * @return backend error stored in this object.
      */
-    BackendError getState();
+    BackendRetcode getState();
 
     /**
      * store an backend error in this object.
      *
-     * @param error a {@link dom.jfischer.kaffeekasse.backend.BackendError}
+     * @param error a {@link dom.jfischer.kaffeekasse.backend.BackendRetcode}
      * object.
      */
-    void setState(final BackendError error);
+    void setState(final BackendRetcode error);
 
 }

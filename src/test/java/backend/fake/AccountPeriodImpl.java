@@ -3,14 +3,14 @@
  */
 package backend.fake;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
-import dom.jfischer.kaffeekasse.backend.BackendErrorState;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
 import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
 import dom.jfischer.kaffeekasse.backend.ar.Participant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import dom.jfischer.kaffeekasse.backend.BackendRetcodeState;
 
 /**
  * implements {@link AccountPeriod}.
@@ -22,7 +22,7 @@ public class AccountPeriodImpl implements AccountPeriod {
     /**
      * instance for storing backend's errors.
      */
-    private final BackendErrorState backendErrorState;
+    private final BackendRetcodeState backendErrorState;
 
     /**
      * price of cup of coffee.
@@ -53,7 +53,7 @@ public class AccountPeriodImpl implements AccountPeriod {
      * @param timestamp
      */
     public AccountPeriodImpl(
-            BackendErrorState backendErrorState,
+            BackendRetcodeState backendErrorState,
             int price,
             Integer id,
             Date timestamp) {
@@ -75,12 +75,12 @@ public class AccountPeriodImpl implements AccountPeriod {
     }
 
     /**
-     * implements {@link AccountPeriod#getBackendError}.
+     * implements {@link AccountPeriod#getBackendRetcode}.
      *
      * @return
      */
     @Override
-    public BackendError getBackendError() {
+    public BackendRetcode getBackendRetcode() {
         return this.backendErrorState.getState();
     }
 
@@ -151,7 +151,7 @@ public class AccountPeriodImpl implements AccountPeriod {
         if (retval == null) {
 
             // if entry not found marks error state.
-            this.backendErrorState.setState(BackendError.ENTRY_NOT_FOUND);
+            this.backendErrorState.setState(BackendRetcode.ENTRY_NOT_FOUND);
         }
 
         return retval;
@@ -165,7 +165,7 @@ public class AccountPeriodImpl implements AccountPeriod {
     @Override
     public void setPrice(int price) {
         if (price == 0) {
-            this.backendErrorState.setState(BackendError.ZERO_PRICE);
+            this.backendErrorState.setState(BackendRetcode.ZERO_PRICE);
         } else {
             this.price = price;
         }

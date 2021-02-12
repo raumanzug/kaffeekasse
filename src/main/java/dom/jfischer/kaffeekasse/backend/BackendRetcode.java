@@ -9,7 +9,7 @@ package dom.jfischer.kaffeekasse.backend;
  * @author jfischer
  * @version $Id: $Id
  */
-public enum BackendError {
+public enum BackendRetcode {
 
     /**
      * no error.
@@ -54,7 +54,7 @@ public enum BackendError {
      *
      * @param errorMessage
      */
-    BackendError(final String errorMessage) {
+    BackendRetcode(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

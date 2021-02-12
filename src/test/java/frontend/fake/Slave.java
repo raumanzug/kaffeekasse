@@ -3,7 +3,7 @@
  */
 package frontend.fake;
 
-import dom.jfischer.kaffeekasse.backend.BackendError;
+import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.middleTier.JSONObject;
 
 /**
@@ -51,12 +51,12 @@ public class Slave extends dom.jfischer.kaffeekasse.middleTier.SlaveImpl {
 
     /**
      * implements abstract method
-     * {@link dom.jfischer.kaffeekasse.middleTier.SlaveImpl#processBackendError}.
+     * {@link dom.jfischer.kaffeekasse.middleTier.SlaveImpl#processBackendRetcode}.
      *
      * @param error
      */
     @Override
-    public void processBackendError(BackendError error) {
+    public void processBackendRetcode(BackendRetcode error) {
     }
 
     /**

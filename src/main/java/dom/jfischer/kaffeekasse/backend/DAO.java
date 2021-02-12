@@ -37,7 +37,7 @@ public interface DAO {
      *
      * @return backend's error.
      */
-    BackendError getBackendError();
+    BackendRetcode getBackendRetcode();
 
     /**
      * get the deposit at the bank.
