@@ -49,6 +49,17 @@
                     <nohelp>true</nohelp>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -106,7 +117,7 @@
         <dependency>
             <groupId>net.sourceforge.argparse4j</groupId>
             <artifactId>argparse4j</artifactId>
-            <version>0.4.4-SNAPSHOT</version>
+            <version>0.4.4</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -125,6 +136,21 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.3.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.5</version>
         </dependency>
     </dependencies>
     <properties>

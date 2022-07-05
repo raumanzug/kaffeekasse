@@ -6,18 +6,17 @@ package dom.jfischer.kaffeekasse.middleTier;
 import backend.fake.DAOImpl;
 import dom.jfischer.kaffeekasse.backend.BackendRetcode;
 import dom.jfischer.kaffeekasse.backend.DAO;
-import dom.jfischer.kaffeekasse.backend.ar.AccountEntry;
-import dom.jfischer.kaffeekasse.backend.ar.AccountPeriod;
-import dom.jfischer.kaffeekasse.backend.ar.Participant;
 import frontend.fake.Slave;
 import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * unit test.
@@ -79,7 +78,6 @@ public class CommandImplTest {
      */
     @Test
     public void testAddParticipant() {
-        setUp();
 
         this.frontend.listParticipants();
 
@@ -177,7 +175,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -185,7 +182,6 @@ public class CommandImplTest {
      */
     @Test
     public void testClear() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -256,7 +252,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -264,7 +259,6 @@ public class CommandImplTest {
      */
     @Test
     public void testCoffeeIn() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -336,7 +330,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -344,7 +337,6 @@ public class CommandImplTest {
      */
     @Test
     public void testCoffeeOut() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -416,7 +408,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -424,7 +415,6 @@ public class CommandImplTest {
      */
     @Test
     public void testDeleteEntry() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -484,7 +474,6 @@ public class CommandImplTest {
             assertTrue(this.slave.getState() == BackendRetcode.ENTRY_NOT_FOUND);
         }
 
-        tearDown();
     }
 
     /**
@@ -492,7 +481,6 @@ public class CommandImplTest {
      */
     @Test
     public void testGetBankDeposit() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -515,7 +503,6 @@ public class CommandImplTest {
             assertTrue(value == 3000);
         }
 
-        tearDown();
     }
 
     /**
@@ -523,7 +510,6 @@ public class CommandImplTest {
      */
     @Test
     public void testGetDeposit() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -546,7 +532,6 @@ public class CommandImplTest {
             assertTrue(value == 500);
         }
 
-        tearDown();
     }
 
     /**
@@ -554,7 +539,6 @@ public class CommandImplTest {
      */
     @Test
     public void testGetNrCups() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -577,7 +561,6 @@ public class CommandImplTest {
             assertTrue(value == 3);
         }
 
-        tearDown();
     }
 
     /**
@@ -585,7 +568,6 @@ public class CommandImplTest {
      */
     @Test
     public void testGetPrice() {
-        setUp();
 
         {
             this.frontend.setPrice(7);
@@ -606,7 +588,6 @@ public class CommandImplTest {
             assertTrue(value == 7);
         }
 
-        tearDown();
     }
 
     /**
@@ -614,7 +595,6 @@ public class CommandImplTest {
      */
     @Test
     public void testInactivateParticipant() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -642,7 +622,6 @@ public class CommandImplTest {
             assertEquals(0, jArray.size());
         }
 
-        tearDown();
     }
 
     /**
@@ -650,7 +629,6 @@ public class CommandImplTest {
      */
     @Test
     public void testListEntries() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -682,7 +660,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -690,7 +667,6 @@ public class CommandImplTest {
      */
     @Test
     public void testListParticipants() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -722,7 +698,6 @@ public class CommandImplTest {
             }
         }
 
-        tearDown();
     }
 
     /**
@@ -730,7 +705,6 @@ public class CommandImplTest {
      */
     @Test
     public void testListPeriods() {
-        setUp();
 
         this.frontend.listPeriods();
 
@@ -747,7 +721,6 @@ public class CommandImplTest {
             assertEquals(1, jArray.size());
         }
 
-        tearDown();
     }
 
     /**
@@ -755,7 +728,6 @@ public class CommandImplTest {
      */
     @Test
     public void testPay() {
-        setUp();
 
         {
             String name = "Mickey Mouse";
@@ -843,8 +815,6 @@ public class CommandImplTest {
             assertTrue(value == 3000);
         }
 
-        tearDown();
-
     }
 
     /**
@@ -852,7 +822,6 @@ public class CommandImplTest {
      */
     @Test
     public void testSetPrice() {
-        setUp();
 
         this.frontend.setPrice(7);
 
@@ -901,7 +870,6 @@ public class CommandImplTest {
             assertTrue(value == 7);
         }
 
-        tearDown();
     }
 
 }
